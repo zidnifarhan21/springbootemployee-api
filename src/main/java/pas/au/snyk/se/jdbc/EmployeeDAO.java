@@ -132,21 +132,4 @@ public class EmployeeDAO {
 
         return employees;
     }
-
-    public void badCode(Long id) {
-
-        Connection dbConnection = null;
-        Statement sqlStatement = null;
-        String data = null;
-
-        try
-        {
-            sqlStatement = dbConnection.createStatement();
-            /* POTENTIAL FLAW: data concatenated into SQL statement used in executeUpdate(), which could result in SQL Injection */
-            int rowCount = sqlStatement.executeUpdate("insert into users (status) values ('updated') where name='"+data+"'");
-        }
-        catch (SQLException exceptSql) {
-            // all good
-        }
-    }
 }

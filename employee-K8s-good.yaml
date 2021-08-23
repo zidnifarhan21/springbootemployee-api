@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snyk-employee-api
+spec:
+  selector:
+    matchLabels:
+      app: snyk-employee-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: snyk-employee-api
+    spec:
+      containers:
+        - name: snyk-employee-api
+          image: pasapples/springbootemployee:cnb
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 80
+          resources:
+            limits:
+              memory: 756Mi
+              cpu: "1"
+            requests:
+              memory: 200Mi
+              cpu: "0.5"
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snyk-employee-api-lb
+  labels:
+    name: snyk-employee-api-lb
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: snyk-employee-api
+  loadBalancerSourceRanges:
+    - "143.231.0.0/16"
+  type: LoadBalancer
