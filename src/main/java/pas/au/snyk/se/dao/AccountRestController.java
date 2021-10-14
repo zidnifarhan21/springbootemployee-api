@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class AccountRestController {
     }
 
     @GetMapping (value = "/{customerId}")
-    public List<AccountDTO> findAccountsByCustomerId (@PathVariable String customerId) {
+    public List<AccountDTO> findAccountsByCustomerId (@Valid @PathVariable String customerId) {
         return accountDAO.unsafeJpaFindAccountsByCustomerId(customerId);
     }
 }
