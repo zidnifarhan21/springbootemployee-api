@@ -21,7 +21,7 @@ public class AccountRestController {
     }
 
     @GetMapping (value = "/{customerId}")
-    public List<AccountDTO> findAccountsByCustomerId (@Valid @PathVariable String customerId) {
+    public List<AccountDTO> findAccountsByCustomerId (@PathVariable String customerId) {
         return accountDAO.unsafeJpaFindAccountsByCustomerId(customerId);
     }
 }
