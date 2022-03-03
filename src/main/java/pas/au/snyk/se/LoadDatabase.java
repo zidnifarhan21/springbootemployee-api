@@ -25,6 +25,7 @@ public class LoadDatabase {
             log.info("pre loading " + employeeRestResource.save(new Employee("pas", "M", "HR")));
             log.info("pre loading " + employeeRestResource.save(new Employee("lucia", "F", "MARKETING")));
             log.info("pre loading " + employeeRestResource.save(new Employee("lucas", "M", "LEGAL")));
+            log.info("pre loading " + employeeRestResource.save(new Employee("lucas", "M", "LEGAL")));
         };
     }
 }
