@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: snyk-employee-api
+  name: springboot-employee-api-apples
+  namespace: apples
 spec:
   selector:
     matchLabels:
-      app: snyk-employee-api
+      app: springboot-employee-api-apples
   replicas: 1
   template:
     metadata:
       labels:
-        app: snyk-employee-api
+        app: springboot-employee-api-apples
     spec:
       containers:
-        - name: snyk-employee-api
-          image: pasapples/springbootemployee:cnb
+        - name: springboot-employee-api-apples
+          image: pasapples/springbootemployee:multi-stage-add-layers
           imagePullPolicy: Always
           readinessProbe:
             httpGet:
@@ -46,16 +47,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: snyk-employee-api-lb
+  name: springboot-employee-api-apples-lb
   labels:
-    name: snyk-employee-api-lb
+    name: springboot-employee-api-apples-lb
 spec:
   ports:
     - port: 80
       targetPort: 8080
       protocol: TCP
   selector:
-    app: snyk-employee-api
+    app: springboot-employee-api-apples-api
   loadBalancerSourceRanges:
     - "143.231.0.0/16"
   type: LoadBalancer
