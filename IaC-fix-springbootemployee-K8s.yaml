@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-employee-api-demo
+  namespace: apples 
+spec:
+  selector:
+    matchLabels:
+      app: springboot-employee-api-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: springboot-employee-api-demo
+    spec:
+      containers:
+        - name: springboot-employee-api-demo
+          image: pasapples/springbootemployee:v2
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          ports:
+            - containerPort: 8080
+
