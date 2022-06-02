@@ -13,9 +13,9 @@ spec:
           image: snyk/snyk-cli:npm
           command: ["/bin/sh","-c"]
           args:
-#            - git clone https://github.com/papicella/springbootemployee-api.git
-            - snyk auth $SNYK_TOKEN
-            - snyk iac test springbootemployee-api/argocd/employee-K8s.yaml || true
+            - git clone https://github.com/papicella/springbootemployee-api.git;
+              snyk auth $SNYK_TOKEN;
+              snyk iac test springbootemployee-api/argocd/employee-K8s.yaml || true;
           env:
             - name: SNYK_TOKEN
               valueFrom:
