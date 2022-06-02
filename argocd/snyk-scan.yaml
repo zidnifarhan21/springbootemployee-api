@@ -15,7 +15,7 @@ spec:
           args:
             - git clone https://github.com/papicella/springbootemployee-api.git
             - snyk auth $SNYK_TOKEN
-            - snyk iac test argocd/employee-K8s.yaml || true
+            - snyk iac test springbootemployee-api/argocd/employee-K8s.yaml || true
           env:
             - name: SNYK_TOKEN
               valueFrom:
