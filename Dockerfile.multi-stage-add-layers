@@ -4,7 +4,7 @@ COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 FROM --platform=linux/amd64 openjdk:11.0.13-slim-buster
-#FROM --platform=linux/amd64 openjdk:19-ea-jdk-slim-bullseye
+#FROM --platform=linux/amd64 openjdk:19-ea-21-oracle
 COPY --from=builder dependencies/ ./
 COPY --from=builder snapshot-dependencies/ ./
 COPY --from=builder spring-boot-loader/ ./
