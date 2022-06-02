@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-employee-api-argocd
-  namespace: apples
 spec:
   selector:
     matchLabels:
